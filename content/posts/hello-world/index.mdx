@@ -1,0 +1,163 @@
+---
+title: "Blade Directives"
+date: 2024-09-10
+slug: "/hello-world"
+tags:
+  - Code
+  - Laravel
+  - PHP
+---
+
+## ONE SENTENCE SUMMARY:
+Blade directives enhance views by adding logic like conditionals and loops.
+
+## MAIN POINTS:
+1. Route handlers setup includes dynamic routing and data passing.
+```php
+Route::get('/ninjas/{id}', function ($id) { // Wildcard
+    return view('ninjas.show', ["id" => $id, "name" => $name]);
+});
+```
+2. Blade directives add logic to views, enhancing flexibility.
+3. @if directive conditionally renders content based on a condition.
+![Potions Class](./potions.jpg)
+
+4. Changing values in route files affects view rendering.
+5. @foreach directive loops through collections to generate HTML.
+6. Directives start with @ and often require a closing tag.
+7. Blade directives improve code readability and maintainability.
+
+Blade directives offer a high return on investment for development teams working within the Laravel framework, although they come with an upfront cost in terms of learning.
+
+```blade
+    @if, @ifelse, @ifempty, @isset, @empty, @unless, @elseif, @else, @forelse, @php
+```
+8. Views can dynamically render content based on passed data.
+```blade
+        @forelse ($ninjas as $ninja)
+            <li>
+                <a href="/ninjas/{{ $ninja["id"] }}">{{$ninja["name"]}}</a>
+                {{-- <a href="/ninjas/{{ $ninja["id"] }}>{{ $ninja["name"] }}</a> --}}
+            </li>
+        @empty
+            <p> Well, it looks like the ninjas list is empty, try adding a ninja.</p>
+        @endforelse
+```
+9. Laravel documentation lists all available Blade directives.
+### Listing available Blade directives:
+
+Blade is a simple yet powerful templating engine provided with Laravel. Here are some commonly used Blade directives:
+
+- **@extends:** Specifies which layout the current view should "inherit" from. 
+  ```blade
+  @extends('layouts.main')
+  ```
+
+- **@section:** Defines a section of content that can be replaced or inherited by child views.
+  ```blade
+  @section('content')
+  ...content here ...
+  @endsection
+  ```
+
+- **@yield:** Placeholder in a layout template for content from a child view.
+  ```blade
+  @yield('content')
+  ```
+
+- **@include:** Includes another view within the current view.
+  ```blade
+  @include('partials.header')
+  ```
+
+- **@each:** Loops through a list of items and includes a view for each item.
+  ```blade
+  @each('partials.list-item', $items, 'item')
+  ```
+
+- **@forelse:** Combines a `@foreach` loop with a fallback `@empty` condition.
+  ```blade
+  @forelse ($users as $user)
+      <li>{{ $user->name }}</li>
+  @empty
+      <p>No users</p>
+  @endforelse
+  ```
+
+- **@if, @else, @elseif, @endif:** Conditional statements.
+  ```blade
+  @if ($var === 'foo')
+      Do something
+  @elseif ($var === 'bar')
+      Do something else
+  @else
+      Do this if no condition is met
+  @endif
+  ```
+
+- **@unless:** Works like `@if(!$condition)`.
+  ```blade
+  @unless ($count)
+      No users found.
+  @endunless
+  ```
+
+- **@while:** Loop based on conditions.
+  ```blade
+  @while (true)
+      <p>I'm looping forever.</p>
+  @endwhile
+  ```
+
+- **@inject:** Injects a class into a view based on the named class in the IoC container.
+  ```blade
+  @inject('metrics', 'App\Services\MetricsService')
+  ```
+
+- **@auth/@guest:** Checks if the user is authenticated or a guest (not logged in).
+  ```blade
+  @auth
+      Welcome, {{ Auth::user()->name }}.
+  @else
+      Please log in.
+  @endauth
+  ```
+
+- **@hasSection/@yieldContent:** Checks for the existence of a section or yields its content if it exists.
+
+- **@php:** Allows you to use raw PHP code directly in a Blade file. (Use sparingly to keep logic separate from views.)
+  ```blade
+  @php
+     $name = 'John';
+  @endphp
+  ```
+
+- **@can & @cannot:** Checks if the authenticated user can perform an action based on abilities.
+  ```blade
+  @can('edit', $post)
+      <form>Edit Post</form>
+  @cannnot('delete', $post)
+      <p>Only users with the delete privilege can delete this.</p>
+  @endcannot
+  ```
+
+- **@stack:** Similar to @yield but allows appending content rather than replacing it.
+
+- **@issset/@endisset & @switch/@case/@break/@default/@endswitch:** Checks isset() or PHP switch-case for controlling flow based on variable existence or exhaustively comparing values.
+
+- **@rawphp:** A directive to display literal PHP code without interpreting it as Blade syntax (escapes Blade processing).
+
+- **@env:** Conditional rendering based on current Laravel environment (useful for debugging/dev settings in production views).
+
+Keep in mind that Blade does not support passing PHP closures directly inside the directive statements as they need to be evaluated at runtime, not during the compilation process of Blade views.
+
+Please verify these work with your Laravel version and consider that more directives might exist or be updated in newer or custom templates used by your Laravel installation.
+
+10. Blade directives will be explored further in the series.
+
+## TAKEAWAYS:
+1. Blade directives simplify adding logic to views.
+2. Use @if for conditional rendering in views.
+3. @foreach is key for dynamically generating list content.
+4. Blade syntax follows a pattern, making it easy to learn.
+5. Layouts in Laravel will be discussed next in the series.

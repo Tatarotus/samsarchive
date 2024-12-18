@@ -37,6 +37,9 @@ node_modules
 jspm_packages
 **/node_modules/**
 
+# static assets
+public
+
 # Typescript v1 declaration files
 typings/
 
@@ -62,7 +65,6 @@ typings/
 
 .cache
 **/.cache
-public
 
 .idea
 .vscode
