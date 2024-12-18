@@ -40,7 +40,7 @@ const config: GatsbyConfig = {
           },
           {
             name: `Homepage`,
-            url: `https://samarchive.surge.sh`,
+            url: `https://samsarchive.surge.sh`,
           },
         ],
       },
